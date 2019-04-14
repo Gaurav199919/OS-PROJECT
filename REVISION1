@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main()
+{
+ int arr_time[25], bur_time[25], tem[25];
+ int i, small, c = 0, time, upper_bound;
+ double wait_time = 0, turn_time = 0, stop;
+ float average_wait_time, average_turn_time;
+ printf("\nENTER TOTAL NUMBER OF PROCESS:\t");
+ scanf("%d", &upper_bound);
+ printf("\nENTER DETAILS OF %d PROCESSES\n", upper_bound);
+ for(i = 0; i < upper_bound; i++)
