@@ -1,0 +1,44 @@
+#include <stdio.h>
+int main()
+{
+ int arr_time[25], bur_time[25], tem[25];
+ int i, small, c = 0, time, upper_bound;
+ double wait_time = 0, turn_time = 0, stop;
+ float average_wait_time, average_turn_time;
+ printf("\nENTER TOTAL NUMBER OF PROCESS:\t");
+ scanf("%d", &upper_bound);
+ printf("\nENTER DETAILS OF %d PROCESSES\n", upper_bound);
+ for(i = 0; i < upper_bound; i++)
+ {
+ printf("\nENTER ARRIVAL TIME:\t");
+ scanf("%d", &arr_time[i]);
+ printf("ENTER BURST TIME:\t");
+ scanf("%d", &bur_time[i]);
+ tem[i] = bur_time[i];
+ }
+
+ for(time = 0; c != upper_bound; time++)
+ {
+ small = 9;
+ for(i = 0; i < upper_bound; i++)
+ {
+ if(arr_time[i] <= time && bur_time[i] < bur_time[ small] && bur_time[i] > 0)
+ {
+ small = i;
+ }
+ }
+ bur_time[ small]--;
+ if(bur_time[ small] == 0)
+ {
+ c++;
+ stop = time + 1;
+ wait_time = wait_time + stop - arr_time[ small] - tem[ small];
+ turn_time = turn_time + stop - arr_time[ small];
+ }
+ }
+ average_wait_time = wait_time / upper_bound;
+ average_turn_time = turn_time / upper_bound;
+ printf("\n\nAVERAGE WAITING TIME OF ALL ABOVE PROCESSES:\t%lf\n", average_wait_time);
+ printf("\n\nAVERAGE TURN AROUND TIME OF ALL ABOVE PROCESSES:\t%lf\n", average_turn_time);
+ return 0;
+}
